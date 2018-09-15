@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 use Storage;
@@ -16,10 +16,22 @@ use App\Product;
 class ProductsController extends Controller
 {
     //
+    //   public function index()
+    // {
+    //     $products=Product::all();
+    //     return view('admin.product.index',compact('products'));
+    // }
+
+
+
       public function index()
     {
-        $products=Product::all();
-        return view('admin.product.index',compact('products'));
+
+        $Products = DB::table('categories')->rightJoin('products', 'products.category_id', '=', 'categories.id')->get(); // now we are fetching all products
+
+
+        $Products=Product::all();
+        return view('admin.product.index',compact('Products'));
     }
 
 
@@ -75,5 +87,51 @@ public function show($id)
         // var_dump($product);
     }
 
+
+public function ProductEditForm($id) {
+        //$pro_id = $reqeust->id;
+        // $Products = DB::table('products')->where('id', '=', $id)->get(); // 
+
+        $Products = Product::findOrFail($id);
+        // $categories = Category::pluck('name', 'id');
+        // $categories = Category::findOrFail($id);
+        // $Products::findOrFail($id)->update($request->all());
+        // $Products = Product::all();
+        // now we are fetching all products
+        return view('admin.product.editProducts', compact('Products', 'categories'));
+    }
+
+
+    public function edit($id)
+    {
+        //
+    }
+
+
+
+public function editProducts(Request $request, $id) {
+        // $pro_id = $reqeust->id;
+        // $Products = DB::table('products')->where('id', '=', $id)->get();
+
+        // $category = Category::findOrFail($id); // now we are fetching all products
+
+        Product::findOrFail($id)->update($request->all());
+
+        // $Product::findOrFail($id)->update($request->all());
+        // return view('admin.product.update', compact('product','category'));
+
+        // return view('admin');
+
+        return redirect()->back();
+    }
+
+
+// public function update(Request $request, $id)
+//     {
+//         //
+//         $Products::findOrFail($id)->update($request->all());
+
+//         return view('admin.product', compact('Products'));
+//     }
 
 }

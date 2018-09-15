@@ -99,20 +99,21 @@
 
                     
                         <span>
-                         <input type="radio" name="pay" value="COD" checked="checked"> COD
+                         <input type="radio" name="pay" value="COD" checked="checked" id="cash"> COD
                           </span>
 
                         <span>
-                        <input type="radio" name="pay" value="paypal"> PayPal
+                        <input type="radio" name="pay" value="paypal" id="paypal"> PayPal
+                           @include('front.paypal')
                         </span>
 
                     
 
                   
-                      <input type="submit" value="Continue">                    
+                      <input type="submit" value="COD" class="btn btn-primary" id="cashbtn">                    
                     </form>
 
-                   
+                  
                
                 <div class="CTAs d-flex justify-content-between flex-column flex-lg-row"><a href="cart.html" class="btn btn-template-outlined wide prev"> <i class="fa fa-angle-left"></i>Back to basket</a><a href="checkout2.html" class="btn btn-template wide next">Choose delivery method<i class="fa fa-angle-right"></i></a></div>
               </div>
@@ -134,5 +135,33 @@
       </div>
     </section>
     <?php  // form start here ?>
+
+
+
+
+    
+ @endsection
+
+
+
+     @section('scripts')
+    <script>
+
+            $('#paypalbtn').hide();
+          //  $('#cashbtn').hide();
+
+            $(':radio[id=paypal]').change(function(){
+                $('#paypalbtn').show();
+                $('#cashbtn').hide();
+
+            });
+
+              $(':radio[id=cash]').change(function(){
+                $('#paypalbtn').hide();
+                $('#cashbtn').show();
+
+            });
+            </script>
+
 
      @endsection

@@ -91,10 +91,38 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 
      Route::POST('/', 'AdminController@store')->name('store');
 
+   
+
      Route::resource('product','ProductsController');
      Route::resource('category','CategoriesController');
 
     Route::get('/admin', 'AdminController@index');
+
+    Route::get('ProductEditForm/{id}', 'ProductsController@ProductEditForm')->name('ProductEditForm');
+
+    Route::post('editProducts/{id}', 'ProductsController@editProducts')->name('editProducts');
+
+    // Route::get('editProducts/{id}', 'ProductsController@editProducts')->name('update');
+
+    Route::post('update/{id}', 'ProductsController@update')->name('update');
+
+
+    // Route::get('/post/{id}', ['as'=>'home.post', 'uses'=>'AdminPostsController@post']);
+
+    // Route::resource('admin/product', 'ProductsController',['names'=>[
+
+        // 'index'=>'admin.posts.index',
+        // 'create'=>'admin.posts.create',
+        // 'store'=>'admin.posts.store',
+        // 'update'=>'admin.product.update'
+
+
+
+   Route::PATCH('editProducts', 'ProductsController@editProduct')->name('editProducts');
+
+    // ]]);
+
+    // Route::get('editProducts/{id}', 'ProductsController@editProducts')->name('editProducts');
 
 });
 
@@ -114,11 +142,7 @@ Route::post('/formvalidate','CheckoutController@formvalidate')->name('formvalida
 
 
 
-Route::get('/thankyou', function() {
-        return view('profile.thankyou');
 
-
-});
 
 Route::post('/address', 'ProfileController@address');
 
@@ -143,6 +167,10 @@ Route::post('/updatePassword', 'ProfileController@updatePassword');
     Route::get('/thankyou', function() {
         return view('profile.thankyou');
     });
+
+
+
+  
 
 
 });
