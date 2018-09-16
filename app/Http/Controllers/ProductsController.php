@@ -110,19 +110,61 @@ public function ProductEditForm($id) {
 
 
 public function editProducts(Request $request, $id) {
+
+
         // $pro_id = $reqeust->id;
-        // $Products = DB::table('products')->where('id', '=', $id)->get();
+        $Products = DB::table('products')->where('id', '=', $id)->get();
 
         // $category = Category::findOrFail($id); // now we are fetching all products
 
-        Product::findOrFail($id)->update($request->all());
+        // Product::findOrFail($id)->update($request->all());
+
+
+        $proid = $request->id;
+
+        $pro_name = $request->pro_name;
+        $category_id = $request->cat_id;
+        $pro_code = $request->pro_code;
+        $pro_price = $request->pro_price;
+        $pro_info = $request->pro_info;
+        $spl_price = $request->spl_price;
+      
+
+        
+
+        DB::table('products')->where('id', $proid)->update([
+            'pro_name' => $pro_name,
+            'category_id' => $category_id,
+            'pro_code' => $pro_code,
+            'pro_price' => $pro_price,
+            'pro_info' => $pro_info,
+            'spl_price' => $spl_price
+           
+
+        ]);
+
+
+
+
+
+
 
         // $Product::findOrFail($id)->update($request->all());
         // return view('admin.product.update', compact('product','category'));
 
-        // return view('admin');
+        // return view('admin.product.index');
 
         return redirect()->back();
+    }
+
+
+
+
+    public function ImageEditForm($id) {
+
+        $Products = Product::findOrFail($id);
+        // $Products = DB::table('products')->where('id', '=', $id)->get(); // now we are fetching all products
+        return view('admin.product.ImageEditForm', compact('Products'));
     }
 
 
@@ -133,5 +175,48 @@ public function editProducts(Request $request, $id) {
 
 //         return view('admin.product', compact('Products'));
 //     }
+
+
+
+
+
+
+public function editProImage(Request $request) {
+
+
+        $proid = $request->id;
+
+
+        $image=$request->image;
+        if($image){
+            $imageName=$image->getClientOriginalName();
+            $image->move('images',$imageName);
+            $formInput['image']=$imageName;
+        }
+
+
+       
+
+
+        DB::table('products')->where('id', $proid)->update(['image' => $imageName]);
+       
+
+        return redirect()->back();
+        
+    }
+
+
+
+
+     public function destroy($id)
+    {
+        //
+          Product::findOrFail($id)->delete();
+
+        return redirect()->back();
+    }
+
+
+
 
 }

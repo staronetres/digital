@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use App\Category;
 use App\Product;
 
@@ -91,8 +91,39 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    // public function destroy($id)
+    // {
+        //
+    // }
+
+
+     public function destroy($id)
     {
         //
+          Category::findOrFail($id)->delete();
+
+        return redirect()->back();
+    }
+
+
+    public function CatEditForm($id) {
+        // $catid = $request->id;
+        // $cats = DB::table('categories')->where('id', $categoryid)->get();
+        $categories = Category::findOrFail($id);
+        return view('admin.category.CatEditForm', compact('categories'));
+
+    }
+
+
+    public function editCat(Request $request) {
+
+        $catid = $request->id;
+        $catName = $request->cat_name;
+        $status = $request->status;
+        DB::table('pro_cat')->where('id', $catid)->update(['name' => $catName, 'status' => $status]);
+
+        $cats = DB::table('pro_cat')->orderby('id', 'DESC')->get();
+
+        return view('admin.categories', compact('cats'));
     }
 }

@@ -91,7 +91,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 
      Route::POST('/', 'AdminController@store')->name('store');
 
-   
+
 
      Route::resource('product','ProductsController');
      Route::resource('category','CategoriesController');
@@ -106,7 +106,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 
     Route::post('update/{id}', 'ProductsController@update')->name('update');
 
+     Route::get('EditImage/{id}', 'ProductsController@ImageEditForm')->name('ImageEditForm');
 
+
+
+     Route::post('editProImage', 'ProductsController@editProImage')->name('editProImage');
+
+
+
+     Route::get('/CatEditForm/{id}', 'CategoriesController@CatEditForm')->name('CatEditForm');
+
+
+     Route::post('/editCat', 'CategoriesController@editCat')->name('editCat');
     // Route::get('/post/{id}', ['as'=>'home.post', 'uses'=>'AdminPostsController@post']);
 
     // Route::resource('admin/product', 'ProductsController',['names'=>[
@@ -118,11 +129,28 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 
 
 
-   Route::PATCH('editProducts', 'ProductsController@editProduct')->name('editProducts');
+   // Route::PATCH('editProducts', 'ProductsController@editProduct')->name('editProducts');
 
     // ]]);
 
     // Route::get('editProducts/{id}', 'ProductsController@editProducts')->name('editProducts');
+
+
+
+    Route::resource('admin/product', 'AdminUsersController',['names'=>[
+
+
+        'index'=>'admin.product.index',
+        'create'=>'admin.users.create',
+        'store'=>'admin.users.store',
+        'edit'=>'admin.users.edit'
+
+
+
+
+
+
+    ]]);
 
 });
 

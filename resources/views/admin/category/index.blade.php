@@ -1,42 +1,91 @@
 @extends('admin.master')
 @section('content')
+
+
+
+<br>
+<br>
+<br>
+<br>
+
+
 <main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
-<h3>Products</h3>
-<div class="navbar">
-        <a class="navbar-brand" href="#">Categories =></a>
-        <ul class="nav navbar-nav">
-            @if(!empty($categories))
-            @forelse($categories as $category)
-                <li class="active">
-                    <a href="{{route('category.show',$category->id)}}">{{$category->name}}</a>
-                </li>
-                @empty
-           
-                <li>No Items</li>
-              @endforelse
-
-              @endif
-
-        </ul>
 
 
+<div class="row">
+  <br>
+<br>
+<br>
+<br>
+    <div class="col-md-6">
+<h3>Categories</h3>
+
+<table class="table table-dark">
+            <thead>
+                <tr>
+                    
+                    <th>Category Name</th>
+               
+                </tr>
+            </thead>
+
+            <tbody>
+        
+            @foreach($categories as $category)
+
+            <tr>
+                <td><a href="{{route('category.show',$category->id)}}">
+                 {{$category->name}}</a></td>
+                <td><a href="{{route('CatEditForm',$category->id)}}" class="btn btn-info btn-small">Edit</a></td>   
+            
+
+                    {{$category->name}}</a></td>
+              
+
+            {!! Form::open(['method'=>'DELETE', 'action'=> ['CategoriesController@destroy', $category->id]]) !!}
+
+
+                <td>  {!! Form::submit('Delete Category', ['class'=>'btn btn-danger col-sm-6']) !!}</td> 
+
+
+
+                {!! Form::close() !!}
+                
+              </tr>
+              @endforeach
+
+            
+            </tbody>
+    </table>
+       
+
+</div>
   
 
-
+      <div class="col-md-4">
            <div class="card card-body bg-success text-white py-5">
-       <h2>My Resume</h2>
+       <h2>Create Category</h2>
        <p class="lead">Lorem Ipsum has been the industry's standard dummy text ever since the</p>
           {!! Form::open(['route' => 'category.store', 'method' => 'post']) !!}
             <div class="form-group">
-                        {{ Form::label('name', 'Title') }}
-                        {{ Form::text('name', null, array('class' => 'form-control')) }}
-                    </div>
+        {{ Form::label('name', 'Name') }}
+        {{ Form::text('name', null, array('class' => 'form-control')) }}
+            </div>
 
+            <div class="form-group">
+                <h6>Category Status</h6>
+            </div>
+           <div class="form-group">
+       <select name="status" class="form-control">
+        <option value="0"  <?php if($category->status=='0'){?>  selected="selected" <?php }?>>Enable</option>
+        <option value="1" <?php if($category->status=='1'){?> selected="selected" <?php }?>>Disable</option>
 
+       </select>
+            </div>
                 
-               
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+   
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Add Category</button>
 
           {!! Form::close() !!}
 
@@ -51,7 +100,7 @@
      
     </div>
 
-
+</div>
 
 
     {{--products--}}
