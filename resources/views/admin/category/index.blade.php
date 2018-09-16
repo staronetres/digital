@@ -25,7 +25,9 @@
                 <tr>
                     
                     <th>Category Name</th>
-               
+                    <th>Edit</th>
+                    <th>Status</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
 
@@ -40,6 +42,13 @@
             
 
                     {{$category->name}}</a></td>
+
+                     <td>@if($category->status=='0')
+                                    Enable
+                                    @else
+                                    Disable
+
+                                    @endif</td>
               
 
             {!! Form::open(['method'=>'DELETE', 'action'=> ['CategoriesController@destroy', $category->id]]) !!}
@@ -72,17 +81,9 @@
         {{ Form::text('name', null, array('class' => 'form-control')) }}
             </div>
 
-            <div class="form-group">
-                <h6>Category Status</h6>
-            </div>
-           <div class="form-group">
-       <select name="status" class="form-control">
-        <option value="0"  <?php if($category->status=='0'){?>  selected="selected" <?php }?>>Enable</option>
-        <option value="1" <?php if($category->status=='1'){?> selected="selected" <?php }?>>Disable</option>
+            <td>Category Status</td>
 
-       </select>
-            </div>
-                
+         
    
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Add Category</button>

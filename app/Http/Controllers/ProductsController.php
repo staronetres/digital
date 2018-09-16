@@ -93,6 +93,7 @@ public function ProductEditForm($id) {
         // $Products = DB::table('products')->where('id', '=', $id)->get(); // 
 
         $Products = Product::findOrFail($id);
+        $categories = Category::all();
         // $categories = Category::pluck('name', 'id');
         // $categories = Category::findOrFail($id);
         // $Products::findOrFail($id)->update($request->all());
@@ -152,9 +153,9 @@ public function editProducts(Request $request, $id) {
         // $Product::findOrFail($id)->update($request->all());
         // return view('admin.product.update', compact('product','category'));
 
-        // return view('admin.product.index');
+        return view('admin.product.index', compact('Products','category'));
 
-        return redirect()->back();
+        // return redirect()->back();
     }
 
 
@@ -214,6 +215,25 @@ public function editProImage(Request $request) {
           Product::findOrFail($id)->delete();
 
         return redirect()->back();
+    }
+
+
+
+    // displaying cats in edit form of products
+
+
+
+
+    public function allCategories($id)
+
+
+    {
+       // $categories = DB::table('categories')->get();
+
+       $categories = Categories::all();
+
+
+       return view('admin.product.index',compact('categories'));
     }
 
 

@@ -116,14 +116,16 @@ class CategoriesController extends Controller
 
 
     public function editCat(Request $request) {
+        
 
+        // $categories = Category::findOrFail($id);
         $catid = $request->id;
         $catName = $request->cat_name;
         $status = $request->status;
-        DB::table('pro_cat')->where('id', $catid)->update(['name' => $catName, 'status' => $status]);
+        DB::table('categories')->where('id', $catid)->update(['name' => $catName, 'status' => $status]);
 
-        $cats = DB::table('pro_cat')->orderby('id', 'DESC')->get();
+        $categories = DB::table('categories')->orderby('id', 'DESC')->get();
 
-        return view('admin.categories', compact('cats'));
+        return view('admin.category.index', compact('categories'));
     }
 }

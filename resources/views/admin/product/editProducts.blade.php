@@ -33,13 +33,13 @@
                 {!! Form::model($Products, ['method'=>'post', 'action'=> ['ProductsController@editProducts', $Products->id], 'files'=>true]) !!}
 
 
-                <?php $cat_data = DB::table('categories')->get(); ?>
+               
 
 
 
                 
                 <Select class="form-control" name="cat_id">
-                            @foreach($cat_data as $cat)
+                            @foreach($categories as $cat)
                             Category:  <option value="{{ $cat->id }}"  <?php 
                             if($Products->cat_id==$cat->id) {?> selected="selected"<?php }?>
 

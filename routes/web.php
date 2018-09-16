@@ -120,9 +120,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
      Route::post('/editCat', 'CategoriesController@editCat')->name('editCat');
     // Route::get('/post/{id}', ['as'=>'home.post', 'uses'=>'AdminPostsController@post']);
 
-    // Route::resource('admin/product', 'ProductsController',['names'=>[
+    Route::resource('admin/product', 'ProductsController',['names'=>[
 
-        // 'index'=>'admin.posts.index',
+        'index'=>'admin.product.index',
         // 'create'=>'admin.posts.create',
         // 'store'=>'admin.posts.store',
         // 'update'=>'admin.product.update'
@@ -131,26 +131,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 
    // Route::PATCH('editProducts', 'ProductsController@editProduct')->name('editProducts');
 
-    // ]]);
+    ]]);
 
     // Route::get('editProducts/{id}', 'ProductsController@editProducts')->name('editProducts');
 
 
 
-    Route::resource('admin/product', 'AdminUsersController',['names'=>[
-
-
-        'index'=>'admin.product.index',
-        'create'=>'admin.users.create',
-        'store'=>'admin.users.store',
-        'edit'=>'admin.users.edit'
-
-
-
-
-
-
-    ]]);
+    
 
 });
 
