@@ -55,6 +55,7 @@
   </style>
     
     <link rel="stylesheet" href="{{asset('dist/css/album.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('dist/css/custom.css')}}">
     <link rel="stylesheet" href="{{asset('dist/css/carousel.css')}}">
     <link href="{{asset('dist/css/bootstrap.css')}}" rel="stylesheet">

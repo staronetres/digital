@@ -3970,10 +3970,6 @@ input[type="button"].btn-block {
   padding-left: 0;
 }
 
-.navbar-nav .dropdown-menu {
-  position: static;
-  float: none;
-}
 
 .navbar-text {
   display: inline-block;

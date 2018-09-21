@@ -26,8 +26,10 @@ class ProductsController extends Controller
 
       public function index()
     {
-
+         $cartItems = Cart::content();
         $Products = DB::table('categories')->rightJoin('products', 'products.category_id', '=', 'categories.id')->get(); // now we are fetching all products
+
+        return view('home', compact('cartItems'));
 
 
         $Products=Product::all();
@@ -69,6 +71,8 @@ class ProductsController extends Controller
         if($image){
             $imageName=$image->getClientOriginalName();
             $image->move('images',$imageName);
+
+            // $image->resize(238, 238)->move('images',$imageName);
             $formInput['image']=$imageName;
         }
      
