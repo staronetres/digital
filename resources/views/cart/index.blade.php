@@ -5,14 +5,29 @@
 
 <script>
 $(document).ready(function(){
+
+
 <?php for($i=1;$i<20;$i++){?>
-  $('#upCart<?php echo $i;?>').on('change keyup', function(){
-  var newqty = $('#upCart<?php echo $i;?>').val();
-  var rowId = $('#rowId<?php echo $i;?>').val();
-  var proId = $('#proId<?php echo $i;?>').val();
-   if(newqty <=0){ alert('enter only valid qty') }
-  else {
-    $.ajax({
+
+$('#upCart<?php echo $i;?>').on('change keyup', function(){
+    
+
+
+  
+    var newqty = $('#upCart<?php echo $i;?>').val();
+    var rowId = $('#rowId<?php echo $i;?>').val();
+    var proId = $('#proId<?php echo $i;?>').val();
+
+
+    if(newqty <=0){ alert('enter only valid quantity') }
+     
+
+     else {
+
+
+        // start of ajax
+       
+       $.ajax({
         type: 'get',
         dataType: 'html',
         url: '<?php echo url('/cart/update');?>/'+proId,
@@ -22,8 +37,10 @@ $(document).ready(function(){
             $('#updateDiv').html(response);
         }
     });
-  }
-  });
+
+       // End of Aajx
+     }
+    });
   <?php } ?>
 });
 </script>
@@ -46,26 +63,24 @@ $(document).ready(function(){
 <br>
 <br>
     <section id="cart_items">
+
+
         <div class="container">
+
             <div class="breadcrumbs">
                 <ol class="breadcrumb">
                     <li><a href="{{url('/')}}"></a></li>
                     <li class="active">Shopping Cart</li>
                 </ol>
             </div>
-<div id="updateDiv">
+
+
+
                            
-            <div class="table-responsive cart_info">
-                <table class="table table-condensed">
-                    <thead>
-                        <tr class="cart_menu">
-                            <td class="image">Image</td>
-                            <td class="description">Product</td>
-                            <td class="price">Price</td>
-                            <td class="quantity">Quantity</td>
-                            <td class="total">Total</td>
-                            <td></td>
-                        </tr>
+            
+
+                  <div id="updateDiv">
+
                         @if(session('status'))
                                     <div class="alert alert-success">
                                         {{session('status')}}
@@ -77,7 +92,31 @@ $(document).ready(function(){
                                         {{session('error')}}
                                     </div>
                                     @endif
-                    </thead>
+
+
+            <div class="table-responsive cart_info">
+
+                 
+                <table class="table table-condensed">
+                    <thead>
+                        <tr class="cart_menu">
+                            <td class="image">Image</td>
+                            <td class="description">Product</td>
+                            <td class="price">Price</td>
+                            <td class="quantity">Quantity</td>
+                            <td class="total">Total</td>
+                            <td></td>
+                        </tr>
+
+
+
+
+                        <!-- Start #updateDiv -->
+
+               
+
+                 </thead>
+                   
                     <?php $count =1;?>
                     @foreach($cartItems as $cartItem)
                     <tbody>
@@ -99,7 +138,7 @@ $(document).ready(function(){
                             
              
                                 <br>
-                            </div>
+                        
                                 <h4><a href="{{url('/product_details')}}/{{$cartItem->id}}" style="color:blue">{{$cartItem->name}}</a></h4>
                                 <p>Product ID: {{$cartItem->id}}</p>
                                  <p>Only {{$cartItem->options->stock}} left</p>
@@ -108,23 +147,24 @@ $(document).ready(function(){
                                 <p>${{$cartItem->price}}</p>
                             </td>
                             <td class="cart_quantity">
-                              {!! Form::open(['url' => ['cart/update',$cartItem->rowId], 'method'=>'put']) !!}
+                             
 
 
-                               <input type="hidden" name="proId" value="{{$cartItem->id}}"/>
+                  <input type="hidden" id="rowId<?php echo $count;?>" value="{{$cartItem->rowId}}"/>
+
+
+              <input type="hidden" id="proId<?php echo $count;?>" value="{{$cartItem->id}}"/>
 
 
 
-                               <input type="number" size="2" value="{{$cartItem->qty}}" name="qty" id="upCart<?php echo $count;?>"
+              <input type="number" size="2" value="{{$cartItem->qty}}" name="qty" id="upCart<?php echo $count;?>"
                                            autocomplete="off" style="text-align:center; max-width:50px; "  MIN="1" MAX="1000">
 
 
 
-                                    
-                                  <input type="submit" class="btn btn-primary" value="Update" styel="margin:5px">  
-                             {!! Form::close() !!}
+                                
                           
-                                </div>
+                               
                             </td>
                             <td class="cart_total">
                                 <p class="cart_total_price">${{$cartItem->subtotal}}</p>
@@ -136,12 +176,21 @@ $(document).ready(function(){
                                    </button>
                             </td>
                         </tr>
-<?php $count++;?>
+
+
+
+                <?php $count++;?>
+
+
+
                     </tbody>  
                     @endforeach
                 </table>
-            </div>
-</div>
+
+               </div>
+            <!-- End of Updatediv</div> --></div>
+
+
         </div>
     </section> <!--/#cart_items-->
     <section id="do_action">
