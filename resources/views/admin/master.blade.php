@@ -128,7 +128,7 @@
   <body>
 
    @include('admin.admin_header')
-   <div class="row">
+ 
   @include('admin.includes.sidenav')
 
 

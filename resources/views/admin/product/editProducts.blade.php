@@ -97,14 +97,27 @@
 </div>
 
 
-<div class="col-md-3">
+<div class="col-md-4">
 
+
+  <div align="center">  
+
+    <a href="{{route('addProperty',$Products->id)}}" class="btn btn-sm btn-info" style="margin:5px">Add Property</a>
+    
+   <br>
+  </div>
+
+
+
+  <div align="center"> 
  <h1>Change Image</h1>
       <img class="card-img-top img-fluid" src="{{url('images',$Products->image)}}" style="width:200px" alt="Card image cap">
 
       <p><a href="{{route('ImageEditForm',$Products->id)}}"
        class="btn btn-info">Change Image</a>
         </p>
+
+    </div>
 </div>
 
 </div>

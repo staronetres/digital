@@ -126,7 +126,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
         // 'create'=>'admin.posts.create',
         // 'store'=>'admin.posts.store',
         // 'update'=>'admin.product.update'
-
+         'editProducts'=>'admin.product.editProducts',
 
 
    // Route::PATCH('editProducts', 'ProductsController@editProduct')->name('editProducts');
@@ -136,9 +136,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
     // Route::get('editProducts/{id}', 'ProductsController@editProducts')->name('editProducts');
 
 
+    Route::get('/addProperty{id}', 'ProductsController@addProperty')->name('addProperty');
 
+
+    Route::post('sumbitProperty','ProductsController@sumbitProperty')->name('sumbitProperty');
     
-
+     
 });
 
 

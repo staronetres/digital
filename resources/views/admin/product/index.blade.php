@@ -38,7 +38,7 @@
                 <tr>
                     <td style="width:50px; border: 1px solid #333;"><img class="card-img-top img-fluid" src="{{url('images',$product->image)}}" width="50px" alt="Card image cap"></td>
 
-                    <td></td>
+                   
                     <td style="width:50px;">{{$product->id}} </td>
                   
                     <td style="width:50px;">{{$product->pro_name}} </td>

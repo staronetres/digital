@@ -12,14 +12,17 @@
 
          <br>
 
-        <main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
         
+
+       <div class="row">
+
+        <div class="container">
         <h1>Dashboard</h1>
          <div class="col-md-6">
-            <h1>BMW</h1>
-        <h1>Add New </h1>
+          
+        <h1>Add New Product</h1>
 
-        <div class="panel-body">
+   
         
 
         {!! Form::open(['route' => 'product.store', 'method' => 'post', 'files' => true]) !!}
@@ -73,6 +76,20 @@
              
    {{!! Form::close() !!}}
        </div>
+
+      <div class="col-md-4">
+            <h1>Add Properties</h1>
+
+
+            <div align="center">    <a href="{{url('/addProperty')}}/2" class="btn btn-sm btn-info">Add Property</a>
+                    </div>
+
+
+    </div>
+
+</div>
+
+   </div>
 
 
 @endsection

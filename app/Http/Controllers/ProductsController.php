@@ -10,7 +10,7 @@ use Image;
 
 use App\Category;
 use App\about;
-
+use App\products_properties;
 use App\Product;
 
 class ProductsController extends Controller
@@ -24,14 +24,26 @@ class ProductsController extends Controller
 
 
 
+    //   public function index()
+    // {
+         // $cartItems = Cart::content();
+        // $Products = DB::table('categories')->rightJoin('products', 'products.category_id', '=', 'categories.id')->get(); // now we are fetching all products
+
+        // return view('home', compact('cartItems'));
+
+
+    //     $Products=Product::all();
+    //     return view('admin.product.index',compact('Products'));
+    // }
+
+
+
       public function index()
     {
-         $cartItems = Cart::content();
+
         $Products = DB::table('categories')->rightJoin('products', 'products.category_id', '=', 'categories.id')->get(); // now we are fetching all products
 
-        return view('home', compact('cartItems'));
-
-
+        // now we are fetching all products and categories
         $Products=Product::all();
         return view('admin.product.index',compact('Products'));
     }
@@ -239,6 +251,38 @@ public function editProImage(Request $request) {
 
        return view('admin.product.index',compact('categories'));
     }
+
+
+
+    public function addProperty($id) {
+
+
+        $Products = Product::findOrFail($id);
+
+        // $Products = DB::table('products')->where('id', '=', $id)->get();
+
+        return view('admin.product.addProperty', compact('Products'));
+    }
+
+
+
+    public function sumbitProperty(Request $request){
+
+    $properties = new products_properties;
+    $properties->pro_id = $request->pro_id;
+    $properties->size = $request->size;
+    $properties->color = $request->color;
+    $properties->p_price = $request->p_price;
+    $properties->save();
+
+    // return redirect('admin.product.ProductEditForm');
+    // return redirect('admin.product.index');
+
+    return redirect()->back();
+
+   
+
+  }
 
 
 
