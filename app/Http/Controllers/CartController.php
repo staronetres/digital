@@ -21,12 +21,25 @@ class CartController extends Controller
         return view('cart.index', compact('cartItems'));
     }
 
-   public function addItem($id) {
+   public function addItem(Request $request, $id) {
          // echo $id;
 
          $products = products::find($id);
 
-         Cart::add($id, $products->pro_name, 1, $products->pro_price, ['img' => $products->image, 'stock' => $products->stock]);
+         if(isset($request->newPrice)) 
+
+         {
+            $price = $request->newPrice; // if size selected
+         }
+
+         else{
+          $price = $products->pro_price; // default price
+         }
+
+         Cart::add($id, $products->pro_name, 1, $price, ['img' => $products->image, 'stock' => $products->stock]);
+
+
+         // Cart::add($id, $products->pro_name, 1, $products->pro_price, ['img' => $products->image, 'stock' => $products->stock]);
 
          return back();
     }

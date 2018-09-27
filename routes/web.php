@@ -83,6 +83,9 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/cart/update/{id}', 'CartController@update');
 
 
+Route::get('selectSize', 'HomeController@selectSize');
+
+
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function() {
      Route::get('/', function(){

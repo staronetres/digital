@@ -1,70 +1,217 @@
 @extends('front.master')
 
 @section('content')
+
+
+<script>
+$(document).ready(function(){
+  $('#size').change(function(){
+    var size = $('#size').val();
+    var proDum = $('#proDum').val();
+
+
+   $.ajax({
+        type: 'get',
+        dataType: 'html',
+        url: '<?php echo url('/selectSize');?>',
+        data: "size=" + size + "& proDum=" + proDum,
+        success: function (response) {
+            console.log(response);
+            $('#price').html(response);
+        }
+    });
+
+
+  });
+});
+
+</script>
+
 <br>
 <br>
 <br>
 <br>
+<br>
+<br>
+<br>
+<br>
+<br> 
+
+
+
+<div class="container align-vertical hero">
+<div class="row">
+<div class="col-md-5 text-left">
+
+
+</div>
+</div><!--end of row-->
+</div><!--end of container-->
+</header>
+
+
+ 
+
+  <section id="index-amazon">
+
+ 
+    <div class="amazon">
+<div class="container">
 
 <div class="row">
-          <div class="product-images col-lg-6">
-          @foreach($Products as $product)
-            <div class="ribbon-info text-uppercase">Fresh</div>
-            <div class="ribbon-primary text-uppercase">Sale</div>
-            <div data-slider-id="1" class="owl-carousel items-slider owl-drag">
-              <div class="item"><img src="<?php echo $product->image;?>" alt="shirt"></div>
-              <div class="item"><img src="img/shirt-black.png" alt="shirt"></div>
-              <div class="item"><img src="img/shirt-green.png" alt="shirt"></div>
-              <div class="item"><img src="img/shirt-red.png" alt="shirt"></div>
-            </div>
-            <div data-slider-id="1" class="owl-thumbs d-flex align-items-center justify-content-center">
-              <button class="owl-thumb-item"><img src="img/shirt-small.png" alt="shirt"></button>
-              <button class="owl-thumb-item active"><img src="img/shirt-black-small.png" alt="shirt"></button>
-              <button class="owl-thumb-item"><img src="img/shirt-green-small.png" alt="shirt"></button>
-              <button class="owl-thumb-item"><img src="img/shirt-red-small.png" alt="shirt"></button>
-            </div>
-
-          </div>
-          <div class="details col-lg-6">
-            <h2>Lose Oversized Shirt</h2>
-            <div class="d-flex align-items-center justify-content-between flex-column flex-sm-row">
-              <ul class="price list-inline no-margin">
-                <li class="list-inline-item current">{{$product->pro_price}}</li>
-                <li class="list-inline-item original">{{$product->spl_price}}</li>
-                <li class="">{{$product->pro_code}}</li>
-              </ul>
-              <div class="review d-flex align-items-center">
-                <ul class="rate list-inline">
-                  <li class="list-inline-item"><i class="fa fa-star-o text-primary"></i></li>
-                  <li class="list-inline-item"><i class="fa fa-star-o text-primary"></i></li>
-                  <li class="list-inline-item"><i class="fa fa-star-o text-primary"></i></li>
-                  <li class="list-inline-item"><i class="fa fa-star-o text-primary"></i></li>
-                  <li class="list-inline-item"><i class="fa fa-star-o text-primary"></i></li>
-                </ul><span class="text-muted">No reviews</span>
-              </div>
-            </div>
-            <p>{{$product->pro_info}}</p>
-            <div class="d-flex align-items-center justify-content-center justify-content-lg-start">
-              <div class="quantity d-flex align-items-center">
-                <div class="dec-btn">-</div>
-                <input type="text" value="1" class="quantity-no">
-                <div class="inc-btn">+</div>
-              </div>
-              <select id="product-size" class="bs-select">
-                <option value="small">Small</option>
-                <option value="meduim">Medium</option>
-                <option value="large">Large</option>
-                <option value="x-large">X-Large</option>
-              </select>
-            </div>
-            <ul class="CTAs list-inline">
-              <li class="list-inline-item"><a href="#" class="btn btn-template wide"> <i class="icon-cart"></i>Add to Cart</a></li>
-              <li class="list-inline-item"><a href="#" class="btn btn-template-outlined wide"> <i class="fa fa-heart-o"></i>Add to wishlist</a></li>
-            </ul>
-          </div>
-
-          @endforeach
+<div class="col-md-12">
+<div class="product">
+<div class="row">
+<div class="col-md-6 col-xs-12">
 
 
+@foreach($Products as $product)
+
+
+<div class="thumbnail">
+             <img src="{{url('images',$product->image)}}" class="card-img">
+                                <br>
+
+
+
+</div>
+
+
+
+<!-- ALT IMAGE  -->
+
+ <div id="similar-product" class="carousel slide" data-ride="carousel">
+                                
+                                  <!-- Wrapper for slides -->
+                                    <div class="carousel-inner">
+                                      <div class="d-flex justify-content-between align-items-center">
+                                        <div class="item active">
+                                          <a href=""><img src="{{url('images',$product->image)}}" alt=""></a>
+                                          
+                                        </div>
+                                        <div class="item">
+                                          <a href=""><img src="{{url('images',$product->image)}}" alt=""></a>
+                                          
+                                        </div>
+                                        <div class="item">
+                                          <a href=""><img src="{{url('images',$product->image)}}" alt=""></a>
+                                         
+                                        </div>
+                                        
+                                    </div>
+
+                                  <!-- Controls -->
+                                  <a class="left item-control" href="#similar-product" data-slide="prev">
+                                    <i class="fa fa-angle-left"></i>
+                                  </a>
+                                  <a class="right item-control" href="#similar-product" data-slide="next">
+                                    <i class="fa fa-angle-right"></i>
+                                  </a>
+                                  </div>
+                            </div>
+
+    
+
+
+
+
+</div>
+<div class="col-md-5 col-md-offset-1">
+
+<div class="product-details">
+
+<h2 class="product-title">
+ <h2><?php echo ucwords($product->pro_name);?></h2>
+ <h5>{{$product->pro_info}}</h5>
+
+ 
+ </h2>
+
+
+ <form action="{{url('/cart/addItem')}}/<?php echo $product->id; ?>">
+
+ <span>
+
+ <span id="price">${{$product->pro_price}}
+
+   <input type="hidden" value="<?php echo $product->pro_price;?>" name="newPrice"/>
+
+ </span>
+
+ <p><b>Availability:</b>{{$product->stock}} In Stock</p>
+
+
+ <?php $sizes = DB::table('products_properties')->where('pro_id',$product->id)->get(); ?>
+
+  <select name="size" id='size'>
+
+   @foreach ($sizes as $size)
+    <option>{{$size->size}}</option>
+
+   @endforeach
+
+  </select>
+
+  
+
+  
+ 
+<button class="btn btn-fefault cart" id="addToCart">
+   <i class="fa fa-shopping-cart"></i>
+   Add to cart
+</button>
+
+
+<input type="hidden" value="<?php echo $product->id; ?>" id="proDum"/>
+
+</span>
+
+</form>
+
+
+<p class="">
+ 
+
+
+</div>
+</div>
+
+@endforeach
+
+
+
+
+
+</div>
+</div>
+</div>
+</div><!-- /.row -->
+
+        </div>
+        </div>
+      </section>
+
+
+      <div class="no-padding-top section">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="#" class="load-more"><i class="fa fa-ellipsis-h"></i></a>
+                            </div>
+                        </div><!-- /.row -->
+                    </div><!-- /.container -->
+                </div>
+
+                <!-- Recommends table -->
+
+
+               <div class="recommended_items"><!--recommended_items-->
+                        <h2 class="title text-center">recommended items</h2>
+
+               
+
+                  </div><!--/recommended_items-->
+                    
+                </div>
 
 @endsection
