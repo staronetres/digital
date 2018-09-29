@@ -3,7 +3,7 @@
 
 @section('content')
 
- <main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
+ <main class="col-sm-12 ml-sm-auto col-md-10 pt-3" role="main">
 <h3>Products</h3>
 
 <ul>
@@ -36,7 +36,7 @@
                
 
 
-
+             
                 
                 <Select class="form-control" name="cat_id">
                             @foreach($categories as $cat)
@@ -86,7 +86,7 @@
                </div>
 
 
-
+          
                             
             {{ Form::submit('Update', array('class' => 'btn btn-default')) }}
     
@@ -97,7 +97,99 @@
 </div>
 
 
-<div class="col-md-4">
+
+
+
+
+
+<div class="col-md-6">
+
+
+
+
+  <div class="content-box-large">
+                      
+                            
+                         <div class="col-md-8">
+                    
+                      <?php {?>
+                $prots = DB::table('products_properties')
+                ->where('pro_id', $pId)->get();
+                if(count($prots)==0) { } else {?>
+                  <div class="panel-heading">
+                   <div class="panel-title">
+                     Update Proprities
+                     <a href="" class="btn btn-info pull-right"
+                     style="margin:-6px; color:#fff">Add more</a>
+                   </div>
+                   </div>
+
+                   <div class="content-box-large">
+
+                      <table class="table table-responsive">
+                      <tr>
+                        <td>Size</td>
+                        <td>Color</td>
+                        <td>price</td>
+                        <td>Update</td>
+                      </tr>
+                
+
+                @foreach($prots as $prot)
+              
+           
+
+                 {!! Form::open(['url' => 'admin/editProperty',  'method' => 'post']) !!}
+                
+
+ 
+                      <tr>
+                          <input type="hidden" name="pro_id" value="{{$prot->pro_id}}" size="6"/> <!-- products_properties pro_id -->
+                          <input type="hidden" name="id" value="{{$prot->id}}" size="6"/> <!--// products_properties id -->
+                        <td><input type="text" name="size" value="{{$prot->size}}" size="6"/></td>
+                        <td><input type="text" name="color" value="{{$prot->color}}" size="15"/></td>
+                        <td><input type="text" name="p_price" value="{{$prot->p_price}}" size="6"/></td>
+                        <td colspan="3" align="right"><input type="submit" class="btn btn-success"
+                          value="Save" style="margin:-6px; color:#fff"></td>
+                      </tr>
+                            {!! Form::close() !!}
+                      @endforeach
+
+                      </table>
+                       <div>
+                 <?php }?>
+                          <td>
+                         
+                       <!-- INLINE FORM -->
+         <!-- FORM ROW -->
+
+         <div class="d-flex justify-content-between align-items-center">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Username">
+            <div class="input-group-append pull-right">
+                <span class="input-group-text">@something.com</span>
+            </div>
+        </div>
+      </div>
+             
+                        
+                       </td>
+                        
+                
+
+      
+                    </tr>   
+
+                      </table>
+                       <div>
+
+
+                  
+                     
+
+
+
+
 
 
   <div align="center">  
@@ -125,6 +217,24 @@
     
         
 </main>
+
+ <!-- NEWSLETTER -->
+  <section id="newsletter" class="text-center p-5 bg-dark text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h1>Sign Up For Our Newsletter</h1>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio asperiores consectetur, quae ducimus voluptates
+            vero repellendus architecto maiores recusandae mollitia?</p>
+          <form class="form-inline justify-content-center">
+            <input type="text" class="form-control mb-2 mr-2" placeholder="Enter Name">
+            <input type="text" class="form-control mb-2 mr-2" placeholder="Enter Email">
+            <button class="btn btn-primary mb-2">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
   
   
 
