@@ -30,7 +30,43 @@
             
           <div class="card-body">
 
-            <p class="card-text">{{$product->pro_name}}</p>
+            <p class="card-text">
+
+
+              {{$product->pro_name}}
+
+
+            </p>
+             
+
+             
+
+
+             
+              
+
+            <p id="price">
+
+              @if($product->spl_price==0)
+            <div class="d-flex justify-content-between align-items-center">
+              <p class="card-text">${{$product->pro_price}}</p>
+               <p class="card-text"></p>
+     </div>
+              @else
+               
+
+
+
+               <div class="d-flex justify-content-between align-items-center">
+            <p class="" style="text-decoration:line-through; color:#333">${{$product->spl_price}}</p>
+             <img src="{{URL::asset('dist/images/shop/sale.png')}}" alt="..."  style="width:60px">
+             <p class="">${{$product->pro_price}}</p>
+
+             
+           </div>
+              @endif
+
+            </p>
              
             <button class="btn btn-primary btn-sm">
              <a href="{{url('/product_details')}}/<?php echo $product->id; ?>" class="add-to-cart addcart">View Product</a>

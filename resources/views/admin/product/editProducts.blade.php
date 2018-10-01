@@ -131,7 +131,7 @@
                         <td>Update</td>
                       </tr>
                 
-
+              <?php {?>
                 @foreach($prots as $prot)
               
            

@@ -132,11 +132,39 @@ $(document).ready(function(){
 
  <span>
 
- <span id="price">${{$product->pro_price}}
+
+
+  
+
+ <span id="price">
+
+    @if($product->spl_price ==0)
+
+   ${{$product->pro_price}}
 
    <input type="hidden" value="<?php echo $product->pro_price;?>" name="newPrice"/>
 
+
+   @else
+
+
+   <div class="d-flex justify-content-between align-items-center">
+
+          <input type="hidden" value="<?php echo $product->spl_price;?>" name="newPrice"/>
+            <p class="" style="text-decoration:line-through; color:#333">${{$product->spl_price}}</p>
+             <img src="{{URL::asset('dist/images/shop/sale.png')}}" alt="..."  style="width:60px">
+             <p class="">${{$product->pro_price}}</p>
+
+             
+           </div>
+
+
+   @endif
+
  </span>
+
+
+
 
  <p><b>Availability:</b>{{$product->stock}} In Stock</p>
 

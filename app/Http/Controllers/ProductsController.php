@@ -107,7 +107,35 @@ public function editProducts(Request $request, $id) {
         $pro_price = $request->pro_price;
         $pro_info = $request->pro_info;
         $spl_price = $request->spl_price;
-      
+
+
+        //   $image=$request->image;
+        // if($image){
+        //     $imageName=$image->getClientOriginalName();
+        //     $image->move('images',$imageName);
+        //     $formInput['image']=$imageName;
+        // }
+
+
+        ///
+    
+
+       // $input = $request->all();
+
+
+       //   if($file = $request->file('photo_id')){
+
+       //  $name = time() . $file->getClientOriginalName();
+
+
+       //      $file->move('images', $name);
+
+       //      $photo = Photo::create(['file'=>$name]);
+
+
+       //      $input['photo_id'] = $photo->id;
+       
+      ////
         
         DB::table('products')->where('id', $proid)->update([
             'pro_name' => $pro_name,
@@ -115,11 +143,15 @@ public function editProducts(Request $request, $id) {
             'pro_code' => $pro_code,
             'pro_price' => $pro_price,
             'pro_info' => $pro_info,
-            'spl_price' => $spl_price
+            'spl_price' => $spl_price,
+            // 'image' => $image,
+
+           
            
         ]);
         // $Product::findOrFail($id)->update($request->all());
         // return view('admin.product.update', compact('product','category'));
+        // return view('admin.product.index', compact('Products','category'));
         return view('admin.product.index', compact('Products','category'));
         // return redirect()->back();
     }
