@@ -180,7 +180,13 @@ $(document).ready(function(){
 
   </select>
 
-  
+
+
+   @if($product->new_arrival==1)
+   <img src="{{URL::asset('dist/images/product-details/new.jpg')}}" alt="...">
+    @endif
+
+
 
   
  

@@ -96,17 +96,10 @@ public function editProducts(Request $request, $id) {
         // $pro_id = $reqeust->id;
 
 
-        $Products = Product::findOrFail($id);
-        // $Products = DB::table('products')->where('id', '=', $id)->get();
+        // $Products = products::findOrFail($id);
+        $Products = DB::table('products')->where('id', '=', $id)->get();
         // $category = Category::findOrFail($id); // now we are fetching all products
         // Product::findOrFail($id)->update($request->all());
-        $proid = $request->id;
-        $pro_name = $request->pro_name;
-        $category_id = $request->cat_id;
-        $pro_code = $request->pro_code;
-        $pro_price = $request->pro_price;
-        $pro_info = $request->pro_info;
-        $spl_price = $request->spl_price;
 
 
         //   $image=$request->image;
@@ -116,26 +109,26 @@ public function editProducts(Request $request, $id) {
         //     $formInput['image']=$imageName;
         // }
 
+        $proid = $request->id;
+        $pro_name = $request->pro_name;
+        $category_id = $request->cat_id;
+        $pro_code = $request->pro_code;
+        $pro_price = $request->pro_price;
+        $pro_info = $request->pro_info;
+        $spl_price = $request->spl_price;
+        // $image = $request->$image;
 
-        ///
-    
-
-       // $input = $request->all();
-
-
-       //   if($file = $request->file('photo_id')){
-
-       //  $name = time() . $file->getClientOriginalName();
+        if($request->new_arrival =='NULL'){
+          $new_arrival = '1';
+        }else {
+          $new_arrival = $request->new_arrival;
+        }
 
 
-       //      $file->move('images', $name);
-
-       //      $photo = Photo::create(['file'=>$name]);
+        
 
 
-       //      $input['photo_id'] = $photo->id;
-       
-      ////
+
         
         DB::table('products')->where('id', $proid)->update([
             'pro_name' => $pro_name,
@@ -144,6 +137,8 @@ public function editProducts(Request $request, $id) {
             'pro_price' => $pro_price,
             'pro_info' => $pro_info,
             'spl_price' => $spl_price,
+            'new_arrival' => $new_arrival
+            // 'image' => $image,
             // 'image' => $image,
 
            

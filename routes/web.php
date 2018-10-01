@@ -87,6 +87,13 @@ Route::get('selectSize', 'HomeController@selectSize');
 
 
 
+
+Route::get('/newArrival', 'HomeController@newArrival');
+
+  
+
+
+
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function() {
      Route::get('/', function(){
          return view('admin.home');

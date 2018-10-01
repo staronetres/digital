@@ -34,7 +34,7 @@
 
 
                
-
+               <input type="hidden" name="id" class="form-control" value="{{$Products->id}}">
 
              
                 
@@ -67,11 +67,13 @@
                  {!! Form::text('pro_code', null, ['class'=>'form-control'])!!}
                </div>
 
+               <img class="card-img-top img-fluid" src="{{url('images',$Products->image)}}" style="width:50px" alt="Card image cap">
+            
 
-              
 
 
-                <img class="card-img-top img-fluid" src="{{url('images',$Products->image)}}" style="width:50px" alt="Card image cap">
+
+               
 
                 
                 <div class="form-group">
@@ -84,9 +86,11 @@
                  {!! Form::label('pro_info', 'Pro Info:') !!}
                  {!! Form::text('pro_info', null, ['class'=>'form-control'])!!}
                </div>
+               
 
-
-          
+                <div class="form-group">
+                New Arrival: <p class="pull-right"><input type="checkbox" name="new_arrival" value="1"></p>
+                </div>
                             
             {{ Form::submit('Update', array('class' => 'btn btn-default')) }}
     

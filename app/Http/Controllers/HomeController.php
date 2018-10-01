@@ -100,4 +100,11 @@ class HomeController extends Controller
     }
 
 
+    public function newArrival(){
+                  $products = DB::table('products')->where('new_arrival', 1)->paginate(6); // now we are fetching all products
+                  return view('front.newArrival', compact('products'));
+
+    }
+
+
 }
