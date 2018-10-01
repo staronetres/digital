@@ -191,4 +191,14 @@ public function editProImage(Request $request) {
         return back()->with('msg', 'check value again');
       }
   }
+
+
+
+   public function addSale(Request $request){
+      $salePrice = $request->salePrice;
+      $pro_id = $request->pro_id;
+      DB::table('products')->where('id', $pro_id)->update(['spl_price' => $salePrice]);
+      echo 'added successfully';
+       // echo $request->salePrice;
+    }
 }

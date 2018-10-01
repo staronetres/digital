@@ -112,10 +112,7 @@
                             
                          <div class="col-md-8">
                     
-                      <?php {?>
-                $prots = DB::table('products_properties')
-                ->where('pro_id', $pId)->get();
-                if(count($prots)==0) { } else {?>
+                     
                   <div class="panel-heading">
                    <div class="panel-title">
                      Update Proprities

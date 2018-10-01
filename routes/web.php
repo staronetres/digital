@@ -146,6 +146,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 
 
     Route::post('editProperty','ProductsController@editProperty');
+
+
+
+    Route::get('addSale','ProductsController@addSale');
     
      
 });
