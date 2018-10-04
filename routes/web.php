@@ -158,6 +158,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 
     Route::get('addSale','ProductsController@addSale');
     
+
+    Route::get('addAlt/{id}', 'ProductsController@addAlt');
+
+
+    Route::post('submitAlt','ProductsController@submitAlt');
      
 });
 

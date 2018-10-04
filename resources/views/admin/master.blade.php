@@ -129,7 +129,7 @@
 
    @include('admin.admin_header')
  
-  @include('admin.includes.sidenav')
+ 
 
 
    @yield('content')

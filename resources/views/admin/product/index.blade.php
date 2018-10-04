@@ -42,17 +42,18 @@
 
 </script>
 
- <main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
-<h3>Products</h3>
+ 
 
-<ul>
+ <div class="container-fluid">
+      <div class="row">
+       
+        @include('admin.includes.sidenav')
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+          
 
-    
-
-
-
-   
-     <!-- INVERSE/DARK TABLE -->
+          <h2>Section title</h2>
+          <div class="table-responsive">
+             <!-- INVERSE/DARK TABLE -->
         <table class="table table-dark">
             <thead>
                 <tr>
@@ -63,6 +64,7 @@
                     <th>Product Code</th>
                     <th>Product Price</th>
                     <th>Category Id</th>
+                    <th>Alt Images</th>
                     <th>On Sale</th>
                     <th>Edit</th>
                     <th>Delete</th>
@@ -87,6 +89,15 @@
                     <td style="width:50px;">{{$product->pro_code}} </td>
                     <td style="width:50px;">{{$product->pro_price}} </td>
                     <td style="width:50px;">{{$product->category_id}}</td>
+                    <td> <a href="{{url('/')}}/admin/addAlt/{{$product->id}}"
+                                   class="btn btn-info" style="border-radius:20px;">
+                                   <i class="fa fa-plus"></i> Add</a></td>
+
+                
+
+
+
+
                     <td >
 
                        <div id="checkSale<?php echo $count;?>">
@@ -127,8 +138,10 @@
             </tbody>
         </table>
 
-        
-</main>
+          </div>
+        </main>
+      </div>
+    </div>
   
   
 

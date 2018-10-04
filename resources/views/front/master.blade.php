@@ -77,8 +77,10 @@
 
     <!-- Slick From Vivid -->
    <!--  <link href="{{asset('dist/css/slick.css')}}"> -->
-    <link href="{{asset('dist/css/slick-theme.css')}}">
-    <link href="{{asset('dist/js/slick.js')}}">
+    <link href="{{asset('slick/slick.css')}}" rel="stylesheet">
+    <link href="{{asset('slick/slick-theme.css')}}" rel="stylesheet">
+   
+   
     <link href="{{asset('dist/js/jquery-3.2.1.js')}}">
     <!-- <link href="{{asset('dist/js/slick.min.js')}}"> -->
      <!-- JS From Vivid -->
@@ -112,7 +114,7 @@
    <script src="{{asset('dist/js/main.js')}}"></script>
 
     
-
+   
 
 
 
@@ -148,6 +150,9 @@
 
     
 
-    @yield('scripts')
+    @yield('script')
+    
+
+    <script src="{{asset('js/slick.js')}}"></script>
   </body>
 </html>

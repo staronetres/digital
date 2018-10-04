@@ -1,3 +1,9 @@
+<!--  <link href="{{asset('dist/css/slick.css')}}"> -->
+
+
+
+
+
 @extends('front.master')
 
 @section('content')
@@ -24,6 +30,10 @@ $(document).ready(function(){
 
   });
 });
+
+
+
+
 
 </script>
 
@@ -80,7 +90,7 @@ $(document).ready(function(){
 
 <!-- ALT IMAGE  -->
 
- <div id="similar-product" class="carousel slide" data-ride="carousel">
+ <div id="similar-product" class="vertical-center-4" data-ride="carousel">
                                 
                                   <!-- Wrapper for slides -->
                                     <div class="carousel-inner">
@@ -109,6 +119,47 @@ $(document).ready(function(){
                                   </a>
                                   </div>
                             </div>
+
+
+
+
+
+
+
+<!-- TESTIMONIALS -->
+  <section id="testimonials" class="p-4 bg-dark text-white">
+    <div class="container">
+      <h2 class="text-center">testimonials</h2>
+      <div class="row text-center">
+        <div class="col">
+      
+   <div class="center">
+    <div>
+      <img src="{{url('images',$product->image)}}" data-srcset="http://placehold.it/650x300?text=1-650w 650w, http://placehold.it/960x300?text=1-960w 960w" data-sizes="100vw">
+    </div>
+    <div>
+      <img src="{{url('images',$product->image)}}" data-srcset="http://placehold.it/650x300?text=2-650w 650w, http://placehold.it/960x300?text=2-960w 960w" data-sizes="100vw">
+    </div>
+    <div>
+      <img src="{{url('images',$product->image)}}"  data-srcset="http://placehold.it/650x300?text=3-650w 650w, http://placehold.it/960x300?text=3-960w 960w" data-sizes="100vw">
+    </div>
+    <div>
+      <img src="{{url('images',$product->image)}}"  data-srcset="http://placehold.it/650x300?text=4-650w 650w, http://placehold.it/960x300?text=4-960w 960w" data-sizes="100vw">
+    </div>
+    <div>
+      <img src="{{url('images',$product->image)}}"  data-srcset="http://placehold.it/650x300?text=5-650w 650w, http://placehold.it/960x300?text=5-960w 960w" data-sizes="100vw">
+    </div>
+    <div>
+      <!-- this slide should inherit the sizes attr from the parent slider -->
+      <img src="{{url('images',$product->image)}}"  data-srcset="http://placehold.it/650x300?text=6-650w 650w, http://placehold.it/960x300?text=6-960w 960w">
+    </div>
+  </div>
+</div>
+</div>
+</section>
+
+
+
 
     
 
@@ -248,4 +299,118 @@ $(document).ready(function(){
                     
                 </div>
 
+<!-- TESTIMONIALS -->
+  
+
+
+
+
+
+
+
+   
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="p-4 bg-dark text-white">
+    <div class="container">
+      <h2 class="text-center">testimonials</h2>
+      <div class="row text-center">
+        <div class="col">
+          <div class="slider">
+            <div>
+              <blockquote class="blockquote">
+                <p class="mb-0">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, quaerat.
+                </p>
+                <footer class="blockquote-footer">John Doe From
+                  <cite title="Company 1">Company 1</cite>
+                </footer>
+              </blockquote>
+            </div>
+            <div>
+              <blockquote class="blockquote">
+                <p class="mb-0">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, quaerat.
+                </p>
+                <footer class="blockquote-footer">Sam Smith From
+                  <cite title="Company 2">Company 2</cite>
+                </footer>
+              </blockquote>
+            </div>
+            <div>
+              <blockquote class="blockquote">
+                <p class="mb-0">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, quaerat.
+                </p>
+                <footer class="blockquote-footer">Meghan Williams From
+                  <cite title="Company 3">Company 3</cite>
+                </footer>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
 @endsection
+
+
+@section('script')
+<script src="{{asset('js/slick.js')}}"></script>
+    
+ <script>
+        
+            $('.center').slick({
+  centerMode: true,
+  centerPadding: '60px',
+  slidesToShow: 3,
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 3
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 1
+      }
+    }
+  ]
+});
+
+
+
+            $('.autoplay').slick({
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 2000,
+});
+
+
+            $('.slider').slick({
+      infinite: true,
+      slideToShow: 1,
+      slideToScroll: 1
+    });
+
+</script>
+
+@endsection
+

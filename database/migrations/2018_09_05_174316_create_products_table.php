@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->integer('category_id');
             $table->string('pro_info');
             $table->string('image')->nullable(); 
+            $table->string('secondimage')->nullable(); 
             $table->string('spl_price')->nullable();
             $table->tinyInteger('new_arrival')->default('0')->nullable();;
             $table->timestamps();

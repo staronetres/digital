@@ -8,7 +8,7 @@ use App\Category;
 use App\about;
 use App\products_properties;
 use App\Product;
-
+use App\alt_images;
 use App\products;
 class ProductsController extends Controller
 {
@@ -43,6 +43,8 @@ class ProductsController extends Controller
     public function store(Request $request) 
     {
         $formInput=$request->except('image');
+
+        // $formInput=$request->except('secondimage');
 //        validation
       
         $this->validate($request,[
@@ -51,7 +53,9 @@ class ProductsController extends Controller
             'pro_price'=>'required',
             'pro_info'=>'required',
             'spl_price'=>'required',
-            'image'=>'image|mimes:png,jpg,jpeg|max:10000'
+            'image'=>'image|mimes:png,jpg,jpeg|max:10000',
+            'secondimage'=>'image|mimes:png,jpg,jpeg|max:10000'
+            // 
         ]);
         
       
@@ -62,8 +66,20 @@ class ProductsController extends Controller
             // $image->resize(238, 238)->move('images',$imageName);
             $formInput['image']=$imageName;
         }
-     
+
+
         Product::create($formInput);
+
+        // $secondimage=$request->image;
+        // if($secondimage){
+        //     $imageName=$secondimage->getClientOriginalName();
+        //     $secondimage->move('images',$imageName);
+            // $image->resize(238, 238)->move('images',$imageName);
+        //     $formInput['secondimage']=$imageName;
+        // }
+     
+      
+        // Product::create($formInput);
         // return redirect()->route('admin.index');
         return redirect()->back();
 }
@@ -227,5 +243,64 @@ public function editProImage(Request $request) {
       DB::table('products')->where('id', $pro_id)->update(['spl_price' => $salePrice]);
       echo 'added successfully';
        // echo $request->salePrice;
+    }
+
+
+    public function addAlt($id){
+
+      // $Products = Product::findOrFail($id);
+      // $proInfo = DB::table('products')->where('id', $id)->get();
+      // return view('admin.product.addAlt', compact('proInfo', 'Products'));
+
+
+       // $Products = Product::findOrFail($id);
+      $proInfo = DB::table('products')->where('id', $id)->get();
+      return view('admin.product.addAlt', compact('proInfo'));
+    }
+
+
+    public function submitAlt(Request $request){
+
+        // dd($request->all());
+     // $file = $request->file('image');
+     //  $filename  = time() . $file->getClientOriginalName(); 
+
+     //  $path = "public/img/alt_images";
+     //  $file->move($path,$filename);
+     //  $proId = $request->pro_id;
+     //  $add_lat = DB::table('alt_images')
+     //  ->insert(['proId' => $proId, 'alt_img' => $filename, 'status' =>0]);
+     //  return back();
+
+
+/////
+       // $image=$request->image;
+       //  if($image){
+       //    $imageName=$image->getClientOriginalName();
+       //      $image->move('images',$imageName);
+          
+       //      $formInput['image']=$imageName;
+       //  }
+
+         $proId = $request->pro_id;
+
+        $alt_img=$request->image;
+        if($alt_img){
+          $imageName=$alt_img->getClientOriginalName();
+            $alt_img->move('images',$imageName);
+          
+            $formInput['alt_img']=$imageName;
+        }
+     
+        // Product::create($formInput);
+
+        // alt_images::create($formInput);
+
+        
+
+          $add_lat = DB::table('alt_images')
+      ->insert(['proId' => $proId, 'alt_img' => $imageName, 'status' =>0]);
+      return back();
+        //   return redirect()->back();
     }
 }

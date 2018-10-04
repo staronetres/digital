@@ -22,7 +22,7 @@
 
 
                 
-
+@include('admin.includes.sidenav')
 
 
   <div class="row">

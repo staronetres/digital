@@ -8,7 +8,7 @@
  
     <div class="container-fluid">
       <div class="row">
-       
+       @include('admin.includes.sidenav')
            
          
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
@@ -26,9 +26,12 @@
             </div>
           </div>
 
+
+           
+
          <!-- New Section -->
           <section id="container" class="">
-       
+             
        <section id="main-content">
            <section class="wrapper">
 

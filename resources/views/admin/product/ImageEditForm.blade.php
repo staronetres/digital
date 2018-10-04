@@ -7,6 +7,8 @@
 
 <br>
 <br>
+
+@include('admin.includes.sidenav')
   <section id="container" class="">
 
     <div class="row">

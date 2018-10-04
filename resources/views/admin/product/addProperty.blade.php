@@ -5,7 +5,7 @@
 
 
   <section id="container" class="">
-        
+        @include('admin.includes.sidenav')
         <section id="main-content">
             <section class="wrapper">
 
