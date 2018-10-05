@@ -95,6 +95,13 @@
                 {{ Form::file('image',array('class' => 'form-control')) }}
             </div>
 
+
+             <div class="form-group">
+                {{ Form::label('secondimage', 'secondimage') }}
+                {{ Form::file('secondimage',array('class' => 'form-control')) }}
+            </div>
+
+
              <div class="form-group">
                 {{ Form::label('Sale Price', 'Sale Price') }}
                 {{ Form::text('spl_price', null, array('class' => 'form-control')) }}

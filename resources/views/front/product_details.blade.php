@@ -88,37 +88,6 @@ $(document).ready(function(){
 
 
 
-<!-- ALT IMAGE  -->
-
- <div id="similar-product" class="vertical-center-4" data-ride="carousel">
-                                
-                                  <!-- Wrapper for slides -->
-                                    <div class="carousel-inner">
-                                      <div class="d-flex justify-content-between align-items-center">
-                                        <div class="item active">
-                                          <a href=""><img src="{{url('images',$product->image)}}" alt=""></a>
-                                          
-                                        </div>
-                                        <div class="item">
-                                          <a href=""><img src="{{url('images',$product->image)}}" alt=""></a>
-                                          
-                                        </div>
-                                        <div class="item">
-                                          <a href=""><img src="{{url('images',$product->image)}}" alt=""></a>
-                                         
-                                        </div>
-                                        
-                                    </div>
-
-                                  <!-- Controls -->
-                                  <a class="left item-control" href="#similar-product" data-slide="prev">
-                                    <i class="fa fa-angle-left"></i>
-                                  </a>
-                                  <a class="right item-control" href="#similar-product" data-slide="next">
-                                    <i class="fa fa-angle-right"></i>
-                                  </a>
-                                  </div>
-                            </div>
 
 
 
@@ -126,44 +95,46 @@ $(document).ready(function(){
 
 
 
-<!-- TESTIMONIALS -->
+
+
+
+
+
+<!-- ALT IMAGES -->
   <section id="testimonials" class="p-4 bg-dark text-white">
     <div class="container">
       <h2 class="text-center">testimonials</h2>
+
+     
       <div class="row text-center">
+       
         <div class="col">
-      
+        
    <div class="center">
+      @foreach($proInfo as $altImg)
     <div>
-      <img src="{{url('images',$product->image)}}" data-srcset="http://placehold.it/650x300?text=1-650w 650w, http://placehold.it/960x300?text=1-960w 960w" data-sizes="100vw">
+      <img src="{{url('images',$altImg->alt_img)}}" data-srcset="http://placehold.it/650x300?text=1-650w 650w, http://placehold.it/960x300?text=1-960w 960w" data-sizes="100vw">
     </div>
     <div>
-      <img src="{{url('images',$product->image)}}" data-srcset="http://placehold.it/650x300?text=2-650w 650w, http://placehold.it/960x300?text=2-960w 960w" data-sizes="100vw">
+      <img src="{{url('images',$altImg->alt_img)}}" data-srcset="http://placehold.it/650x300?text=1-650w 650w, http://placehold.it/960x300?text=1-960w 960w" data-sizes="100vw">
     </div>
-    <div>
-      <img src="{{url('images',$product->image)}}"  data-srcset="http://placehold.it/650x300?text=3-650w 650w, http://placehold.it/960x300?text=3-960w 960w" data-sizes="100vw">
-    </div>
-    <div>
-      <img src="{{url('images',$product->image)}}"  data-srcset="http://placehold.it/650x300?text=4-650w 650w, http://placehold.it/960x300?text=4-960w 960w" data-sizes="100vw">
-    </div>
-    <div>
-      <img src="{{url('images',$product->image)}}"  data-srcset="http://placehold.it/650x300?text=5-650w 650w, http://placehold.it/960x300?text=5-960w 960w" data-sizes="100vw">
-    </div>
-    <div>
-      <!-- this slide should inherit the sizes attr from the parent slider -->
-      <img src="{{url('images',$product->image)}}"  data-srcset="http://placehold.it/650x300?text=6-650w 650w, http://placehold.it/960x300?text=6-960w 960w">
-    </div>
+
+     @endforeach
   </div>
+
+
+
 </div>
+
 </div>
+
+
 </section>
+   
+ 
 
 
-
-
-    
-
-
+  <!-- END OF ALT IMAGES -->  
 
 
 </div>
@@ -255,13 +226,82 @@ $(document).ready(function(){
 
 
 <p class="">
- 
+ @endforeach
+
+<!-- TABLE -->
 
 
+  <?php $reviews = DB::table('reviews')->get();
+    $count_reviews = count($reviews);?>
+
+
+    <div class="category-tab shop-details-tab"><!--category-tab-->
+                    <div class="col-sm-12">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#details" data-toggle="tab">Details</a></li>
+                            <li><a href="#tag" data-toggle="tab">Tag</a></li>
+                            <li ><a href="#reviews" data-toggle="tab">Reviews ({{$count_reviews}})</a></li>
+                        </ul>
+                    </div>
+   @foreach($reviews as $review)
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                   
+                    <th>Person Name</th>
+                  
+                    <th>Email</th>
+                    <th>Review Content</th>
+                </tr>
+                <tr>
+                   
+                    <th>
+
+
+
+                      <i class="fa fa-clock-o"></i>
+                                      {{date('H: i', strtotime($review->created_at))}}</th>
+                  
+                    <th><i class="fa fa-calendar-o"></i>
+                                        {{date('F j, Y', strtotime($review->created_at))}}</a></th>
+                    <th>Review Content</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                   
+                    <td>{{$review->person_name}}</td>
+                    <td>{{$review->person_email}}</td>
+                    <td>{{$review->review_content}}</td>
+                  
+                </tr>
+                
+            </tbody>
+        </table>
+
+  @endforeach
+
+
+   <form action="{{url('/addReview')}}" method="post">
+                                  {{ csrf_field() }}
+                                    <span>
+                                        <input type="text" name="person_name" placeholder="Your Name"/>
+                                        <input type="email", name="person_email" placeholder="Email Address"/>
+                                    </span>
+                                    <textarea name="review_content" ></textarea>
+
+                                    <button type="submit" class="btn btn-default pull-right">
+                                        Submit
+                                    </button>
+                                </form>
 </div>
 </div>
 
-@endforeach
+
+
+
 
 
 

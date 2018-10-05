@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Product;
+
+use App\reviews;
 use App\Category;
 use Illuminate\Support\Facades\DB;
-
+use App\alt_images;
 use App\wishList;
 use App\recommends;
 use Illuminate\Http\Request;
@@ -63,9 +65,15 @@ class HomeController extends Controller
 
     public function product_details($id) {
 
-      
+        $proInfo = alt_images::all();
+         
+
+
+        $reviews = reviews::all();
+       
+
         $Products = DB::table('products')->where('id', $id)->get();
-        return view('front.product_details', compact('Products'));
+        return view('front.product_details', compact('Products','proInfo','reviews','count_reviews'));
     }
 
     public function search(Request $request) {
@@ -104,6 +112,17 @@ class HomeController extends Controller
                   $products = DB::table('products')->where('new_arrival', 1)->paginate(6); // now we are fetching all products
                   return view('front.newArrival', compact('products'));
 
+    }
+
+
+
+     public function addReview(Request $request){
+      DB::table('reviews')->insert(
+    ['person_name' => $request->person_name, 'person_email' => $request->person_email,
+  'review_content' => $request->review_content,
+  'created_at' => date("Y-m-d H:i:s"),'updated_at' =>date("Y-m-d H:i:s")]
+      );
+      return back();
     }
 
 

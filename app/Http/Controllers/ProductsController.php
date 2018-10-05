@@ -31,7 +31,9 @@ class ProductsController extends Controller
         $Products = DB::table('categories')->rightJoin('products', 'products.category_id', '=', 'categories.id')->get(); // now we are fetching all products
         // now we are fetching all products and categories
         $Products=Product::all();
-        return view('admin.product.index',compact('Products'));
+         $proInfo = alt_images::all();
+
+        return view('admin.product.index',compact('Products','proInfo'));
     }
      public function create()
     {
@@ -54,7 +56,7 @@ class ProductsController extends Controller
             'pro_info'=>'required',
             'spl_price'=>'required',
             'image'=>'image|mimes:png,jpg,jpeg|max:10000',
-            'secondimage'=>'image|mimes:png,jpg,jpeg|max:10000'
+            // 'secondimage'=>'image|mimes:png,jpg,jpeg|max:10000'
             // 
         ]);
         
@@ -68,19 +70,28 @@ class ProductsController extends Controller
         }
 
 
-        Product::create($formInput);
+        // Product::create($formInput);
 
-        // $secondimage=$request->image;
+        // $secondimage=$request->secondimage;
         // if($secondimage){
         //     $imageName=$secondimage->getClientOriginalName();
         //     $secondimage->move('images',$imageName);
             // $image->resize(238, 238)->move('images',$imageName);
         //     $formInput['secondimage']=$imageName;
         // }
+
+
+       
      
       
-        // Product::create($formInput);
+        Product::create($formInput);
+
+        // Product::create();
         // return redirect()->route('admin.index');
+
+      //   $add_lat = DB::table('products')
+      // ->insert(['image' => $imageName, 'secondimage' => $imageName]);
+     
         return redirect()->back();
 }
 public function show($id)

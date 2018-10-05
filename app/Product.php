@@ -8,7 +8,7 @@ class Product extends Model
 {
     protected $table = 'products';
     protected $primaryKey = 'id';
-    protected $fillable=['pro_name','pro_code','pro_price','image','pro_info','spl_price','category_id','stock'];
+    protected $fillable=['pro_name','pro_code','pro_price','image','pro_info','spl_price','category_id','stock','secondimage'];
 
     public function categories() {
 

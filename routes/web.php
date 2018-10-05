@@ -171,6 +171,8 @@ Route::get('/products', function (){
     return view('front/shop');
 });
 
+Route::post('addReview', 'HomeController@addReview');
+
 
 
 Route::group(['middleware' => 'auth'], function() {

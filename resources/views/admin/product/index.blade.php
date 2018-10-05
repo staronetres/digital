@@ -94,9 +94,44 @@
                                    <i class="fa fa-plus"></i> Add</a></td>
 
                 
+              <!-- ProInfo -->
+
+                     <td>
+                      <div class="content-box-large col-md-5">
+                <h1>ALt images</h1>
+                <?php $altImages = DB::table('alt_images')->where('proId', $proInfo[0]->id)->get();?>
+@if(count($altImages)!=0)
+                <table class="table table-striped">
+                  <tr>
+                    <td>index</td>
+                    <td>Product id</td>
+                    <td>alt image</td>
+                    <td>status</td>
+                  </tr>
+                  @foreach($altImages as $img)
+                  <tr>
+                    <td>{{$img->id}}</td>
+                    <td>{{$img->proId}}</td>
+                  <td>
 
 
+                  <img class="card-img-top img-fluid" src="{{url('images',$img->alt_img)}}" width="50px" alt="Card image cap">
 
+
+                  </td>
+                    <td>{{$img->status}}</td>
+                  </tr>
+                  @endforeach
+
+                </table>
+                @else
+                <p class="alert alert-danger">this product have not any alt images</p>
+                @endif
+              </div>
+
+                     </td>
+
+                        <!-- ProInfo -->
 
                     <td >
 
